@@ -1,0 +1,28 @@
+<resources>
+    <!-- Textos del formulario principal -->
+    <string name="app_name">My Receipts</string>
+    <string name="client_type">Client Type</string>
+    <string name="iva_rate">IVA Rate</string>
+    <string name="import_quantity">Import</string>
+    <string name="iva" translatable="false">IVA</string>
+    <string name="subtotal_wuantity">Subtotal</string>
+    <string name="iva_retention">IVA Retention</string>
+    <string name="isr_retention">ISR Retention</string>
+    <string name="total_quantity">Total</string>
+
+    <!--Tipo de personas-->
+    <string name="individual_person">Individual Person</string>
+    <string name="moral_person">Moral Person</string>
+    <string name="state_goverment">State Goverment</string>
+    <string name="foreign_client">Foreign Client</string>
+
+    <!-- IVA rates -->
+    <string name="general_iva">General (16%)</string>
+    <string name="frontier_iva">Frontier (11%)</string>
+    <string name="zero_iva">Zero Rate (0%)</string>
+
+    <!-- Valor por defecto -->
+    <string name="placeholder_value">$0.00</string>
+
+
+</resources>
