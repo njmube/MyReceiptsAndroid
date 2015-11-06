@@ -16,4 +16,5 @@ That's why the development branches are for, You little son of a bitch!
 
 #Contribute
 
-You can contribute to this simple app, the point above is very important. besides, the best way to contribute is forking this r$
+You can contribute to this simple app, the point above is very important. 
+besides, the best way to contribute is forking this repository.
