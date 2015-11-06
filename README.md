@@ -1,6 +1,7 @@
-#My Receipts
 
-Android app for calculating the correct numbers about how to fill you receipt fee.
+#My Receipts
+Android app for calculating receipt fees, following the Mexico SAT's standard.
+This app helps you calculating the correct numbers about how to fill you receipt fee.
 
 #master branch
 
@@ -15,4 +16,4 @@ That's why the development branches are for, You little son of a bitch!
 
 #Contribute
 
-You can contribute to this simple app, the point above is very important. besides, the best way to contribute is forking this repository and make a pull request.
+You can contribute to this simple app, the point above is very important. besides, the best way to contribute is forking this r$
