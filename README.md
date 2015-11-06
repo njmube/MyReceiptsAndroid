@@ -11,7 +11,7 @@ The development branches follows this naming pattern:
 
 [Feature you are developing] / improving]/[GitHub Username]_[The action you are doing]
 
-**EXAMPLE
+#EXAMPLE
 App/AlfredoBejarano_development
 
 #Contribute
