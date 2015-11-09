@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             ivaRetention = 0;
         }
 
-        double subtotal = rate + quantity;
+        double subtotal = iva + quantity;
         double total = subtotal - (ivaRetention + isrRetention);
 
         array[0] = quantity;
