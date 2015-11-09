@@ -19,57 +19,115 @@
     <Spinner
         android:id="@+id/iva_spinner"
         android:layout_margin="8dp"
-        android:layout_below="@id/person_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/person_spinner">
     </Spinner>
 
+    <TextView
+        android:text="@string/import_quantity"
+        android:id="@+id/import_quantity_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iva_spinner"/>
+
     <EditText
         android:inputType="numberDecimal"
-        android:id="@+id/edittext_import_quantity"
-        android:layout_below="@id/iva_spinner"
+        android:id="@+id/import_quantity_edittext"
         android:hint="@string/import_quantity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/import_quantity_textview"/>
+
+    <!---->
+
+    <TextView
+        android:text="@string/iva"
+        android:id="@+id/iva_quantity_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/import_quantity_edittext"/>
 
     <EditText
         android:inputType="numberDecimal"
-        android:id="@+id/edittext_iva_quantity"
-        android:layout_below="@id/edittext_import_quantity"
+        android:id="@+id/iva_quantity_edittext"
         android:hint="@string/iva"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iva_quantity_textview"/>
+
+    <!---->
+
+    <TextView
+        android:text="@string/subtotal_quantity"
+        android:id="@+id/subtotal_quantity_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iva_quantity_edittext"/>
 
     <EditText
         android:inputType="numberDecimal"
-        android:id="@+id/edittext_subtotal_quantity"
-        android:layout_below="@id/edittext_iva_quantity"
+        android:id="@+id/subtotal_quantity_edittext"
         android:hint="@string/subtotal_quantity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subtotal_quantity_textview" />
+
+    <!---->
+
+    <TextView
+        android:text="@string/iva_retention"
+        android:id="@+id/iva_retention_quantity_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subtotal_quantity_edittext"/>
 
     <EditText
         android:inputType="numberDecimal"
-        android:id="@+id/edittext_iva_retention_quantity"
-        android:layout_below="@id/edittext_subtotal_quantity"
+        android:id="@+id/iva_retention_quantity_edittext"
         android:hint="@string/iva_retention"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iva_retention_quantity_textview"/>
+
+    <!---->
+
+    <TextView
+        android:text="@string/isr_retention"
+        android:id="@+id/isr_retention_quantity_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iva_retention_quantity_edittext"/>
 
     <EditText
         android:inputType="numberDecimal"
-        android:id="@+id/edittext_isr_retention_quantity"
-        android:layout_below="@id/edittext_iva_retention_quantity"
+        android:id="@+id/isr_retention_quantity_edittext"
         android:hint="@string/isr_retention"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/isr_retention_quantity_textview"/>
+
+    <!---->
+
+    <TextView
+        android:text="@string/total_quantity"
+        android:id="@+id/total_quantity_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/isr_retention_quantity_edittext"/>
 
     <EditText
         android:inputType="numberDecimal"
-        android:id="@+id/edittext_total_quantity"
-        android:layout_below="@id/edittext_isr_retention_quantity"
+        android:id="@+id/total_quantity_edittext"
         android:hint="@string/total_quantity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_quantity_textview"/>
 
 </RelativeLayout>

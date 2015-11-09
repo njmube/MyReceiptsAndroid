@@ -3,7 +3,6 @@ package me.alfredobejarano.myreceipts;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,12 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner ivaSpinner;
     private Spinner personSpinner;
-    private EditText importEditText;
-    private EditText subtotalEditText;
-    private EditText ivaQuantityEditText;
-    private EditText ivaRetentionEditText;
-    private EditText isrRetentionEditText;
-    private EditText totalEditText;
+
+    private EditText importEditText,subtotalEditText,ivaQuantityEditText,ivaRetentionEditText,isrRetentionEditText,totalEditText;
+
     private ArrayAdapter<CharSequence> personAdapter;
     private ArrayAdapter<CharSequence> ivaAdapter;
 
@@ -60,15 +56,14 @@ public class MainActivity extends AppCompatActivity {
         personSpinner = (Spinner) findViewById(R.id.person_spinner);
         ivaSpinner = (Spinner) findViewById(R.id.iva_spinner);
 
-        importEditText = (EditText) findViewById(R.id.edittext_import_quantity);
-        ivaQuantityEditText = (EditText) findViewById(R.id.edittext_iva_quantity);
-        subtotalEditText = (EditText) findViewById(R.id.edittext_subtotal_quantity);
-        ivaRetentionEditText = (EditText) findViewById(R.id.edittext_iva_retention_quantity);
-        isrRetentionEditText = (EditText) findViewById(R.id.edittext_isr_retention_quantity);
-        totalEditText = (EditText) findViewById(R.id.edittext_total_quantity);
+        importEditText = (EditText) findViewById(R.id.import_quantity_edittext);
+        ivaQuantityEditText = (EditText) findViewById(R.id.iva_quantity_edittext);
+        subtotalEditText = (EditText) findViewById(R.id.subtotal_quantity_edittext);
+        ivaRetentionEditText = (EditText) findViewById(R.id.iva_retention_quantity_edittext);
+        isrRetentionEditText = (EditText) findViewById(R.id.isr_retention_quantity_edittext);
+        totalEditText = (EditText) findViewById(R.id.total_quantity_edittext);
 
         editTexts = new ArrayList<>();
-
         editTexts.add(importEditText);
         editTexts.add(subtotalEditText);
         editTexts.add(ivaQuantityEditText);
@@ -90,42 +85,14 @@ public class MainActivity extends AppCompatActivity {
         personSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                double quantity = 0;
-
-                if (!String.valueOf(importEditText.getText()).equals("")) {
-                    quantity = Double.parseDouble(String.valueOf(importEditText.getText()));
+                double iva = setIvaRate(ivaSpinner.getSelectedItemPosition());
+                try {
+                    setEditTexts(calculate(Double.parseDouble(String.valueOf(importEditText.getText())), position, iva), editTexts);
+                }
+                catch(Exception e) {
+                    Log.e("## ERROR ##", "Cantidad vacía");
                 }
 
-                int persontype = personSpinner.getSelectedItemPosition();
-                int selectedRate = ivaSpinner.getSelectedItemPosition();
-
-                if (persontype == 0) {
-                    if (selectedRate == 0) {
-                        values = calculate(quantity, 0, 16);
-                    } else if (selectedRate == 1) {
-                        values = calculate(quantity, 0, 11);
-                    } else {
-                        values = calculate(quantity, 0, 0);
-                    }
-                } else if (persontype == 1) {
-                    if (selectedRate == 0) {
-                        values = calculate(quantity, 1, 16);
-                    } else if (selectedRate == 1) {
-                        values = calculate(quantity, 1, 11);
-                    } else {
-                        values = calculate(quantity, 1, 0);
-                    }
-                } else {
-                    if (selectedRate == 0) {
-                        values = calculate(quantity, 2, 16);
-                    } else if (selectedRate == 1) {
-                        values = calculate(quantity, 2, 11);
-                    } else {
-                        values = calculate(quantity, 2, 0);
-                    }
-                }
-
-                setEditTexts(values,editTexts);
             }
 
             @Override
@@ -136,20 +103,23 @@ public class MainActivity extends AppCompatActivity {
 
     public double[] calculate(double quantity,int persontype, double rate) {
         double[] array = new double[6];
-        double iva = quantity*(rate*0.01);
-        double subtotal = iva + quantity;
+        double iva = 0;
         double ivaRetention = 0;
         double isrRetention = 0;
 
         if(persontype == 0) {
             isrRetention = 0;
             ivaRetention = 0;
+            iva = quantity*rate;
         } else if(persontype == 1) {
-            ivaRetention = (iva/3)*2;
+            ivaRetention = (rate/3)*2;
             isrRetention = (quantity * 0.1);
+            iva = quantity*rate;
         } else if(persontype == 2) {
             ivaRetention = 0;
             isrRetention = (quantity * 0.1);
+            rate = 0;
+            iva = 0;
         } else if(persontype == 3) {
             rate = 0;
             iva = 0;
@@ -157,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
             ivaRetention = 0;
         }
 
+        double subtotal = rate + quantity;
         double total = subtotal - (ivaRetention + isrRetention);
 
         array[0] = quantity;
@@ -174,4 +145,14 @@ public class MainActivity extends AppCompatActivity {
             texts.get(i).setText(String.valueOf(values[i]));
         }
     }
+    private double setIvaRate(int type) {
+        if(type == 0) {
+            return 0.16;
+        } else if (type == 1) {
+            return 0.10;
+        } else {
+            return 0.0;
+        }
+    }
+
 }
