@@ -36,6 +36,7 @@
         android:inputType="numberDecimal"
         android:id="@+id/import_quantity_edittext"
         android:hint="@string/import_quantity"
+        android:text="@string/placeholder_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/import_quantity_textview"/>

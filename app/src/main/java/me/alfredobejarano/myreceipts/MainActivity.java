@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -65,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         editTexts = new ArrayList<>();
         editTexts.add(importEditText);
-        editTexts.add(subtotalEditText);
         editTexts.add(ivaQuantityEditText);
+        editTexts.add(subtotalEditText);
         editTexts.add(ivaRetentionEditText);
         editTexts.add(isrRetentionEditText);
         editTexts.add(totalEditText);
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     setEditTexts(calculate(Double.parseDouble(String.valueOf(importEditText.getText())), position, iva), editTexts);
                 }
                 catch(Exception e) {
-                    Log.e("## ERROR ##", "Cantidad vacía");
+                    Toast.makeText(MainActivity.this,getResources().getText(R.id.empty_import),Toast.LENGTH_SHORT).show();
                 }
 
             }
