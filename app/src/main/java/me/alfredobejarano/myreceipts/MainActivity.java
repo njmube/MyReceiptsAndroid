@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     setEditTexts(calculate(Double.parseDouble(String.valueOf(importEditText.getText())), position, iva), editTexts);
                 }
                 catch(Exception e) {
-                    Toast.makeText(MainActivity.this,getResources().getText(R.id.empty_import),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,getResources().getText(R.string.empty_import),Toast.LENGTH_SHORT).show();
                 }
 
             }
