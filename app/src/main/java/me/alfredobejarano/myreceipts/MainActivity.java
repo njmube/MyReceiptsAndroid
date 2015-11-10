@@ -88,7 +88,25 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 double iva = setIvaRate(ivaSpinner.getSelectedItemPosition());
                 try {
-                    setEditTexts(calculate(Double.parseDouble(String.valueOf(importEditText.getText())), position, iva), editTexts);
+                    setEditTexts(calculateByImport(Double.parseDouble(String.valueOf(importEditText.getText())), position, iva), editTexts);
+                }
+                catch(Exception e) {
+                    Toast.makeText(MainActivity.this,getResources().getText(R.string.empty_import),Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ivaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                double iva = setIvaRate(position);
+                try {
+                    setEditTexts(calculateByImport(Double.parseDouble(String.valueOf(importEditText.getText())), position, iva), editTexts);
                 }
                 catch(Exception e) {
                     Toast.makeText(MainActivity.this,getResources().getText(R.string.empty_import),Toast.LENGTH_SHORT).show();
@@ -102,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public double[] calculate(double quantity,int persontype, double rate) {
+    public double[] calculateByImport(double quantity,int persontype, double rate) {
         double[] array = new double[6];
         double iva = 0;
         double ivaRetention = 0;

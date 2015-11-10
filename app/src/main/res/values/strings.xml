@@ -34,4 +34,5 @@
 
     <!-- No se ha incertado ningun valor -->
     <string name="empty_import">Please insert an import value</string>
+    <string name="calculate">calculate</string>
 </resources>
