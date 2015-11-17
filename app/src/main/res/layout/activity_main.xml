@@ -101,6 +101,7 @@
         android:padding="8dp"/>
 
     <Button
+        android:id="@+id/calculate_button"
         android:padding="8dp"
         android:text="@string/calculate"
         android:layout_below="@id/total_quantity_textview"

@@ -6,10 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,16 +29,20 @@ public class MainActivity extends AppCompatActivity {
     private int ivaValue;
     private int personType;
 
-    private ArrayList<EditText> editTexts;
+    private ArrayList editTexts;
 
     private Spinner ivaSpinner;
     private Spinner personSpinner;
 
-    private EditText importEditText,subtotalEditText,ivaQuantityEditText,ivaRetentionEditText,isrRetentionEditText,totalEditText;
+    private EditText importEditText;
+    private TextView subtotalEditText,ivaQuantityEditText,ivaRetentionEditText,isrRetentionEditText,totalEditText;
 
     private ArrayAdapter<CharSequence> personAdapter;
     private ArrayAdapter<CharSequence> ivaAdapter;
 
+    private String[] RIds;
+
+    private Button calculateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         isrQuantity = 0.00;
         totalQuantity = 0.00;
 
+
         ivaValue = 16;
         personType = 0;
 
@@ -58,19 +66,29 @@ public class MainActivity extends AppCompatActivity {
         ivaSpinner = (Spinner) findViewById(R.id.iva_spinner);
 
         importEditText = (EditText) findViewById(R.id.import_quantity_edittext);
-        ivaQuantityEditText = (EditText) findViewById(R.id.iva_quantity_edittext);
-        subtotalEditText = (EditText) findViewById(R.id.subtotal_quantity_edittext);
-        ivaRetentionEditText = (EditText) findViewById(R.id.iva_retention_quantity_edittext);
-        isrRetentionEditText = (EditText) findViewById(R.id.isr_retention_quantity_edittext);
-        totalEditText = (EditText) findViewById(R.id.total_quantity_edittext);
+        ivaQuantityEditText = (TextView) findViewById(R.id.iva_quantity_textview);
+        subtotalEditText = (TextView) findViewById(R.id.subtotal_quantity_textview);
+        ivaRetentionEditText = (TextView) findViewById(R.id.iva_retention_quantity_textview);
+        isrRetentionEditText = (TextView) findViewById(R.id.isr_retention_quantity_textview);
+        totalEditText = (TextView) findViewById(R.id.total_quantity_textview);
+
+        calculateButton = (Button) findViewById(R.id.calculate_button);
 
         editTexts = new ArrayList<>();
-        editTexts.add(importEditText);
         editTexts.add(ivaQuantityEditText);
         editTexts.add(subtotalEditText);
         editTexts.add(ivaRetentionEditText);
         editTexts.add(isrRetentionEditText);
         editTexts.add(totalEditText);
+
+        //Filling the R id's values
+        RIds = new String[5];
+
+        RIds[0] = getResources().getString(R.string.iva);
+        RIds[1] = getResources().getString(R.string.subtotal_quantity);
+        RIds[2] = getResources().getString(R.string.iva_retention);
+        RIds[3] = getResources().getString(R.string.isr_retention);
+        RIds[4] = getResources().getString(R.string.total_quantity);
 
         //Filling the person type Spinner
         personAdapter = ArrayAdapter.createFromResource(this, R.array.person_spinner_array, android.R.layout.simple_spinner_item);
@@ -82,40 +100,20 @@ public class MainActivity extends AppCompatActivity {
         ivaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ivaSpinner.setAdapter(ivaAdapter);
 
-        //Quantities listeners
-        personSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //Calculate listener
+        calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onClick(View v) {
                 double iva = setIvaRate(ivaSpinner.getSelectedItemPosition());
+                int personType = personSpinner.getSelectedItemPosition();
+
                 try {
-                    setEditTexts(calculateByImport(Double.parseDouble(String.valueOf(importEditText.getText())), position, iva), editTexts);
+                    setEditTexts(calculateByImport(Double.parseDouble(String.valueOf(importEditText.getText())), personType, iva), editTexts);
                 }
                 catch(Exception e) {
+                    Log.e("##########",e.getMessage());
                     Toast.makeText(MainActivity.this,getResources().getText(R.string.empty_import),Toast.LENGTH_SHORT).show();
                 }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        ivaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                double iva = setIvaRate(position);
-                try {
-                    setEditTexts(calculateByImport(Double.parseDouble(String.valueOf(importEditText.getText())), position, iva), editTexts);
-                }
-                catch(Exception e) {
-                    Toast.makeText(MainActivity.this,getResources().getText(R.string.empty_import),Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
@@ -149,19 +147,20 @@ public class MainActivity extends AppCompatActivity {
         double subtotal = iva + quantity;
         double total = subtotal - (ivaRetention + isrRetention);
 
-        array[0] = quantity;
-        array[1] = iva;
-        array[2] = subtotal;
-        array[3] = ivaRetention;
-        array[4] = isrRetention;
-        array[5] = total;
+        array[0] = round(quantity,2);
+        array[1] = round(iva,2);
+        array[2] = round(subtotal,2);
+        array[3] = round(ivaRetention,2);
+        array[4] = round(isrRetention,2);
+        array[5] = round(total,2);
 
         return array;
     }
 
-    private void setEditTexts(double[] values, ArrayList<EditText> texts) {
-        for (int i = 0; i <= 5; i++) {
-            texts.get(i).setText(String.valueOf(values[i]));
+    private void setEditTexts(double[] values, ArrayList<TextView> texts) {
+        for (int i = 0; i <= texts.size()-1; i++) {
+            texts.get(i).setText("");
+            texts.get(i).setText(String.valueOf(RIds[i])+": $"+String.valueOf(values[i+1]));
         }
     }
     private double setIvaRate(int type) {
@@ -174,4 +173,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
 }

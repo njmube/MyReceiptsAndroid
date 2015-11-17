@@ -1,11 +1,24 @@
 <resources>
+    <!--Receipt Date-->
+    <string name="date_hint">Date of expedition</string>
+    <string name="date_button">Use today\'s date</string>
+
+    <!--Emitter and receiver-->
+    <string name="emitter_name">Emitter\'s name</string>
+    <string name="receptor_name">Receptor\'s name</string>
+
+    <!-- Actions -->
+    <string name="save_receipt">Save</string>
+    <string name="send_receipt">Send via email</string>
+    <string name="name_receipt">Name this receipt</string>
+
     <!-- Textos del formulario principal -->
     <string name="app_name">Receipts</string>
     <string name="main_activity_title">Create a new Receipt</string>
     <string name="client_type">Client Type</string>
     <string name="iva_rate">IVA Rate</string>
     <string name="import_quantity">Import</string>
-    <string name="iva" translatable="false">IVA</string>
+    <string name="iva">IVA</string>
     <string name="subtotal_quantity">Subtotal</string>
     <string name="iva_retention">IVA Retention</string>
     <string name="isr_retention">ISR Retention</string>
@@ -30,7 +43,7 @@
     </string-array>
 
     <!-- Valor por defecto -->
-    <string name="placeholder_value">0.00</string>
+    <string name="placeholder_value" translatable="false">0.00</string>
 
     <!-- No se ha incertado ningun valor -->
     <string name="empty_import">Please insert an import value</string>
