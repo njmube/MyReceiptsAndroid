@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">Receipts (BETA)</string>
     <!--Receipt Date-->
     <string name="date_hint">Date of expedition</string>
     <string name="date_button">Use today\'s date</string>
@@ -13,7 +14,6 @@
     <string name="name_receipt">Name this receipt</string>
 
     <!-- Textos del formulario principal -->
-    <string name="app_name">Receipts</string>
     <string name="main_activity_title">Create a new Receipt</string>
     <string name="client_type">Client Type</string>
     <string name="iva_rate">IVA Rate</string>

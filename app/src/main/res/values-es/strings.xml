@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Recibos de Honorarios (BETA)</string>
     <!--Receipt Date-->
     <string name="date_hint">Fecha de expedición</string>
     <string name="date_button">Usar la fecha de hoy</string>
@@ -14,7 +15,6 @@
     <string name="name_receipt">Nombrar este recibo</string>
 
     <!-- Textos del formulario principal -->
-    <string name="app_name">Recibos de Honorarios</string>
     <string name="main_activity_title">Crear un nuevo recibo</string>
     <string name="client_type">Tipo de persona</string>
     <string name="iva_rate">Taza de IVA</string>
