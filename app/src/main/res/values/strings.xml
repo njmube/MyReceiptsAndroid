@@ -1,28 +1,51 @@
 <resources>
+    <string name="app_name">Receipts (BETA)</string>
+    <!--Receipt Date-->
+    <string name="date_hint">Date of expedition</string>
+    <string name="date_button">Use today\'s date</string>
+
+    <!--Emitter and receiver-->
+    <string name="emitter_name">Emitter\'s name</string>
+    <string name="receptor_name">Receptor\'s name</string>
+
+    <!-- Actions -->
+    <string name="save_receipt">Save</string>
+    <string name="send_receipt">Send via email</string>
+    <string name="name_receipt">Name this receipt</string>
+
     <!-- Textos del formulario principal -->
-    <string name="app_name">My Receipts</string>
+    <string name="main_activity_title">Create a new Receipt</string>
     <string name="client_type">Client Type</string>
     <string name="iva_rate">IVA Rate</string>
     <string name="import_quantity">Import</string>
-    <string name="iva" translatable="false">IVA</string>
-    <string name="subtotal_wuantity">Subtotal</string>
+    <string name="iva">IVA</string>
+    <string name="subtotal_quantity">Subtotal</string>
     <string name="iva_retention">IVA Retention</string>
     <string name="isr_retention">ISR Retention</string>
     <string name="total_quantity">Total</string>
 
-    <!--Tipo de personas-->
-    <string name="individual_person">Individual Person</string>
-    <string name="moral_person">Moral Person</string>
-    <string name="state_goverment">State Goverment</string>
-    <string name="foreign_client">Foreign Client</string>
+    <!--Person types-->
+    <string name="person_type_spinner">Choose a person type</string>
+    <string-array name="person_spinner_array">
+        <item>Individual Person</item>
+        <item>Moral Person</item>
+        <item>State Goverment</item>
+        <item>Foreign Client</item>
+    </string-array>
+
 
     <!-- IVA rates -->
-    <string name="general_iva">General (16%)</string>
-    <string name="frontier_iva">Frontier (11%)</string>
-    <string name="zero_iva">Zero Rate (0%)</string>
+    <string name="iva_type_spinner">Choose an IVA rate</string>
+    <string-array name="iva_spinner_array">
+        <item>General (16%)</item>
+        <item>Frontier (11%)</item>
+        <item>Zero Rate (0%)</item>
+    </string-array>
 
     <!-- Valor por defecto -->
-    <string name="placeholder_value">$0.00</string>
+    <string name="placeholder_value" translatable="false">0.00</string>
 
-
+    <!-- No se ha incertado ningun valor -->
+    <string name="empty_import">Please insert an import value</string>
+    <string name="calculate">calculate</string>
 </resources>

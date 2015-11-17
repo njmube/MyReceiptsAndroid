@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recibos de Honorarios (BETA)</string>
+    <!--Receipt Date-->
+    <string name="date_hint">Fecha de expedición</string>
+    <string name="date_button">Usar la fecha de hoy</string>
+
+    <!--Emitter and receiver-->
+    <string name="emitter_name">Nombre del emisor</string>
+    <string name="receptor_name">Nombre del receptor</string>
+
+    <!-- Actions -->
+    <string name="save_receipt">Guardar</string>
+    <string name="send_receipt">Envíar por correo</string>
+    <string name="name_receipt">Nombrar este recibo</string>
+
+    <!-- Textos del formulario principal -->
+    <string name="main_activity_title">Crear un nuevo recibo</string>
+    <string name="client_type">Tipo de persona</string>
+    <string name="iva_rate">Taza de IVA</string>
+    <string name="import_quantity">Importe</string>
+    <string name="iva">IVA</string>
+    <string name="subtotal_quantity">Subtotal</string>
+    <string name="iva_retention">Retención IVA</string>
+    <string name="isr_retention">Retención ISR</string>
+    <string name="total_quantity">Total</string>
+
+    <!--Person types-->
+    <string name="person_type_spinner">Escoge un tipo de persona</string>
+    <string-array name="person_spinner_array">
+        <item>Física</item>
+        <item>Moral</item>
+        <item>Gubernamental</item>
+        <item>Extranjera</item>
+    </string-array>
+
+
+    <!-- IVA rates -->
+    <string name="iva_type_spinner">Escoge una taza de IVA</string>
+    <string-array name="iva_spinner_array">
+        <item>General (16%)</item>
+        <item>Fronteriza (11%)</item>
+        <item>Cero (0%)</item>
+    </string-array>
+
+    <!-- Valor por defecto -->
+    <string name="placeholder_value" translatable="false">0.00</string>
+
+    <!-- No se ha incertado ningun valor -->
+    <string name="empty_import">Por favor escribe un importe</string>
+    <string name="calculate">calcular</string>
+</resources>
