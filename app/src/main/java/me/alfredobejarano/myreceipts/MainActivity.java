@@ -1,5 +1,6 @@
 package me.alfredobejarano.myreceipts;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -101,6 +102,50 @@ public class MainActivity extends AppCompatActivity {
         ivaSpinner.setAdapter(ivaAdapter);
 
         //Calculate listener
+
+        personSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                double iva = setIvaRate(ivaSpinner.getSelectedItemPosition());
+                int personType = personSpinner.getSelectedItemPosition();
+
+                try {
+                    setEditTexts(calculateByImport(Double.parseDouble(String.valueOf(importEditText.getText())), personType, iva), editTexts);
+                }
+                catch(Exception e) {
+                    Log.e("RubberDuck",e.getMessage());
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this,getResources().getText(R.string.empty_import),Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ivaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                double iva = setIvaRate(ivaSpinner.getSelectedItemPosition());
+                int personType = personSpinner.getSelectedItemPosition();
+
+                try {
+                    setEditTexts(calculateByImport(Double.parseDouble(String.valueOf(importEditText.getText())), personType, iva), editTexts);
+                } catch (Exception e) {
+                    Log.e("RubberDuck", e.getMessage());
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, getResources().getText(R.string.empty_import), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
                     setEditTexts(calculateByImport(Double.parseDouble(String.valueOf(importEditText.getText())), personType, iva), editTexts);
                 }
                 catch(Exception e) {
-                    Log.e("##########",e.getMessage());
+                    Log.e("RubberDuck",e.getMessage());
+                    e.printStackTrace();
                     Toast.makeText(MainActivity.this,getResources().getText(R.string.empty_import),Toast.LENGTH_SHORT).show();
                 }
             }
@@ -129,9 +175,9 @@ public class MainActivity extends AppCompatActivity {
             ivaRetention = 0;
             iva = quantity*rate;
         } else if(persontype == 1) {
-            ivaRetention = (rate/3)*2;
             isrRetention = (quantity * 0.1);
             iva = quantity*rate;
+            ivaRetention = (iva/3)*2;
         } else if(persontype == 2) {
             ivaRetention = 0;
             isrRetention = (quantity * 0.1);
